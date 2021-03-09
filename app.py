@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, redirect
-
+import os
 import requests
 
 
@@ -13,7 +13,7 @@ def main_page():
 
 @app.route('/city')
 def city_search():
-    API_KEY = '639cd74b40221a097d31bc5e64e343ab'
+    API_KEY = os.environ.get('API_KEY')  # укажите переменные среды для ключа
     city = request.args.get('q')
     url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}'
 
