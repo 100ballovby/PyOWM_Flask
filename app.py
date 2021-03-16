@@ -31,7 +31,9 @@ def city_search(city):
     current_weather = response.get('main', {}).get('temp')
     if current_weather:
         celsius = round(current_weather - 273.15, 2)
-        return f'Temperature in {city.title()} now is {celsius}'
+        city = city.title()
+        res = celsius
+        return render_template('result.html', result=res, city=city)
     else:
         return f'Error getting temperature for {city.title()}'
 

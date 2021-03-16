@@ -5,11 +5,13 @@
     <h1>Welcome to Weather App!</h1>
 
     <form action="" method="post">
-        {{ form.hidden_tag() }}
-        <label for="city_name">City name:</label>
-        <input type="text" name="city" id="city_name" placeholder="City...">
-
-        <input type="submit" value="Submit">
+    {{ form.hidden_tag() }}
+        <div class="mb-3">
+            <label for="city" class="form-label">City name</label>
+            <input type="text" class="form-control" name="city" id="city_name">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <button type="submit" class="btn btn-outline-primary">Search</button>
     </form>
 
 {% endblock %}

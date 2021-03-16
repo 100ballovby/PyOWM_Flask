@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %}Weather{% endblock %}</h1>
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Weather for {{ city }}</h5>
+            <p class="card-text">{{ result }}</p>
+            <a href="{{ url_for('main_page') }}" class="btn btn-primary">Main page</a>
+        </div>
+    </div>
+    <div class="alert alert-info">
+        {{ result }}
+    </div>
+
+{% endblock %}
