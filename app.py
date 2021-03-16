@@ -1,19 +1,25 @@
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, url_for
+from forms import SearchForm
 import os
 import requests
 
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 
 @app.route('/', methods=['GET', 'POST'])
 def main_page():
-    return render_template('index.html')
+    form = SearchForm()
+    if form.validate_on_submit():
+        city = request.form['city']
+        return redirect(url_for('city_search'), param=city)
+    return render_template('index.html', form=form)
 
 
 @app.route('/city')
 def city_search():
-    API_KEY = os.environ.get('API_KEY')  # укажите переменные среды для ключа
+    API_KEY = os.environ.get('API_KEY') or 'try-to-connect'  # укажите переменные среды для ключа
     city = request.args.get('q')
     url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}'
 
